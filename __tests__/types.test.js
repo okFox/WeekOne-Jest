@@ -1,7 +1,12 @@
 const {
   isNumber,
   castToNumber,
-  getCaster
+  getCaster,
+  isString,
+  isBoolean,
+  isArray,
+  isObject,
+  isFunction
 } = require('../lib/types.js');
 
 describe('validator module', () => {
@@ -13,6 +18,50 @@ describe('validator module', () => {
       expect(isNumber({})).toBeFalsy();
       expect(isNumber(() => {})).toBeFalsy();
       expect(isNumber(true)).toBeFalsy();
+    });
+    it('tells if value is a string', () => {
+      expect(isString('cat')).toBeTruthy();
+      expect(isString(3)).toBeFalsy();
+      expect(isString(true)).toBeFalsy(); 
+      
+    });
+
+    it('tells if value is boolean', () => {
+      expect(isBoolean(true)).toBeTruthy();
+      expect(isBoolean(false)).toBeTruthy();
+      expect(isBoolean('cow')).toBeFalsy();
+      expect(isBoolean(23)).toBeFalsy();
+      expect(isBoolean({})).toBeFalsy();
+      expect(isBoolean([])).toBeFalsy();
+    });
+
+    it('tells if value is an array', () => {
+      expect(isArray('notArray')).toBeFalsy();
+      expect(isArray([1, 2, true])).toBeTruthy();
+      expect(isArray(42)).toBeFalsy();
+      expect(isArray({})).toBeFalsy();
+      expect(isArray(true)).toBeFalsy();
+      expect(isArray([])).toBeTruthy();
+    });
+
+    it('tells if value is an object', () => {
+      expect(isObject(888)).toBeFalsy();
+      expect(isObject('huh???')).toBeFalsy();
+      expect(isObject(false)).toBeFalsy();
+      expect(isObject([])).toBeFalsy();
+      expect(isObject({})).toBeTruthy();
+    });
+
+    it('tells if a value is a function', () => {
+      expect(isFunction('lol')).toBeFalsy();
+      expect(isFunction(42)).toBeFalsy();
+      expect(isFunction(true)).toBeFalsy();
+      expect(isFunction({})).toBeFalsy();
+      expect(isFunction(['no', 'no', 'yes'])).toBeFalsy();
+      expect(isFunction((a, b) => {
+        return a + b;
+      })).toBeTruthy();
+
     });
   });
 
@@ -35,3 +84,6 @@ describe('validator module', () => {
     expect(getCaster(Promise)).toBeNull();
   });
 });
+
+
+
