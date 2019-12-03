@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`validator module can cast values to a string 1`] = `"Do you really want to cast >>[object Object]<< to String?"`;
+exports[`validator module casters can cast values to a string 1`] = `"Do you really want to cast >>[object Object]<< to String?"`;
 
 exports[`validator module casters throws if value is not castable to number 1`] = `"Cannot cast >>hi<< to Number"`;
 
