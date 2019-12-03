@@ -6,7 +6,8 @@ const {
   isBoolean,
   isArray,
   isObject,
-  isFunction
+  isFunction,
+  castToString
 } = require('../lib/types.js');
 
 describe('validator module', () => {
@@ -79,11 +80,23 @@ describe('validator module', () => {
     });
   });
 
-  it('can get the right caster', () => {
-    expect(getCaster(Number)).toEqual(castToNumber);
-    expect(getCaster(Promise)).toBeNull();
+  it('can cast values to a string', () => {
+    expect(castToString(3)).toEqual('3');
+    expect(castToString('3')).toEqual('3');
+    expect(castToString(true)).toEqual('true');
+    expect(() => castToString({})).toThrowErrorMatchingSnapshot();
   });
+
+
 });
+
+// it('can get the right caster', () => {
+//   expect(getCaster(String)).toEqual(castToString);
+//   expect(getCaster(Number)).toEqual(castToNumber);
+// //boolean
+//   expect(getCaster(Promise)).toBeNull();
+// });
+
 
 
 
