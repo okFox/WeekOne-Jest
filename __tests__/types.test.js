@@ -7,7 +7,8 @@ const {
   isArray,
   isObject,
   isFunction,
-  castToString
+  castToString,
+  StringCastError
 } = require('../lib/types.js');
 
 describe('validator module', () => {
